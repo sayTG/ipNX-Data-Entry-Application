@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F1170F"
+    android:orientation="vertical"
+    tools:context=".MainActivity"
+    android:weightSum="3">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_weight="1.38"
+        android:paddingTop="5dp"
+        android:paddingLeft="10dp"
+        >
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F1170F"
+        android:text="ipNX Data Entry Form"
+        android:layout_gravity="center"
+        android:textColor="#0C0A0A"
+        android:textSize="24sp"
+        android:textStyle="normal|bold" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.29"
+        android:background="#FFFFFF"
+        android:orientation="vertical"
+        android:weightSum="6"
+        android:padding="10dp">
+
+        <Spinner
+            android:id="@+id/affectedRegion"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+
+            android:backgroundTint="#0C0B0C" />
+
+        <Spinner
+            android:id="@+id/type"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:backgroundTint="#0C0B0C" />
+
+        <EditText
+            android:id="@+id/affectedPONPort"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_weight="1"
+            android:backgroundTint="#F1170F"
+            android:ems="10"
+            android:hint="Affected Pon Port"
+            android:inputType="textPersonName"
+            android:textColor="#F1170F"
+            android:textColorHint="#0C0A0A" />
+
+        <EditText
+            android:id="@+id/location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="#F1170F"
+            android:ems="10"
+            android:hint="Location"
+            android:inputType="textPersonName"
+            android:textColor="#F1170F"
+            android:textColorHint="#0C0A0A" />
+
+        <EditText
+            android:id="@+id/rFO"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="#F1170F"
+            android:ems="10"
+            android:hint="RFO"
+            android:inputType="textPersonName"
+            android:textColor="#F1170F"
+            android:textColorHint="#0C0A0A" />
+
+        <Button
+            android:id="@+id/addImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="#F1170F"
+            android:text="Add Image"
+            android:textColor="#161515" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/linearLayout"
+        android:layout_marginTop="5dp"
+        android:layout_weight="1.33"
+        android:background="#FFFFFF"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:weightSum="4">
+
+        <Button
+            android:id="@+id/save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#3D5AFE"
+            android:text="Save"
+            android:textColor="#0F0F0F"
+            android:textStyle="normal|bold" />
+
+        <Button
+            android:id="@+id/newSheet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#EDEAEE"
+            android:text="New"
+            android:textColor="#0F0F0F"
+            android:textStyle="normal|bold"
+            android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/modify"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#00E676"
+            android:text="Modify"
+            android:textColor="#0F0F0F"
+            android:textStyle="normal|bold"
+            android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#F31B14"
+            android:text="Delete"
+            android:textColor="#0F0F0F"
+            android:textStyle="normal|bold"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+</LinearLayout>

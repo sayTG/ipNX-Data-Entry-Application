@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">DataEntryFormipNX</string>
+    <!--    <String name="Affected_Region">Choose a region</String>-->
+
+    <string-array name="Region_Arrays">
+        <item></item>
+        <item>Apapa</item>
+        <item>Victoria Island</item>
+        <item>Lekki/VGC</item>
+        <item>Surulere</item>
+        <item>Lagos Island</item>
+        <item>Ikoyi</item>
+        <item>Ikeja</item>
+        <item>Abuja</item>
+
+    </string-array>
+    <!--    <String name="Fault_type">Choose a type</String>-->
+    <string-array name="Type">
+        <item></item>
+        <item>Feeder</item>
+        <item>Distribution</item>
+        <item>MST Tail</item>
+
+    </string-array>
+
+
+</resources>
