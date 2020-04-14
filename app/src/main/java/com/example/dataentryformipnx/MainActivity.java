@@ -53,8 +53,15 @@ public class MainActivity extends AppCompatActivity {
     Button addImage;
     private int PICK_IMAGE_REQUEST = 1;
 
+
     String sUserImage ;
     Bitmap rBitMap;
+//    String sRFO;
+//    String sLocation;
+//    String sAffected;
+//    String sType;
+//    String sAffectedRegion;
+
 //    ProgressDialog loading1;
 
 
@@ -90,16 +97,19 @@ public class MainActivity extends AppCompatActivity {
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner1.setAdapter(adapter1);
 
-        save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                addItemToSheet();
+            save.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 //                textView.setText(sUserImage);
-                Toast.makeText(MainActivity.this, "Clicked Save Data", Toast.LENGTH_SHORT).show();
+                    addItemToSheet();
+//                    Toast.makeText(MainActivity.this, "Clicked Save Data", Toast.LENGTH_SHORT).show();
+                }
 
-            }
-        });
+
+
+
+            });
+
 
         modify.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -162,70 +172,85 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void addItemToSheet(){
-        final ProgressDialog loading = ProgressDialog.show(this, "Adding Data", "Please Wait");
+    private void addItemToSheet() {
+
         final String sRFO = rFO.getText().toString().trim();
         final String sLocation = location.getText().toString().trim();
         final String sAffected = affectedPort.getText().toString().trim();
         final String sType = text_type;
         final String sAffectedRegion = text_affected_region;
 
-        Log.e("null","values"+sUserImage);
+        Log.e("null", "values" + sUserImage);
 
-        if (sUserImage == null){
+        if (sUserImage == null ) {
             sUserImage = "";
+
         }
 
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST,
-                "https://script.google.com/macros/s/AKfycbwZDvjcxVbZ8uDP9XEbGy0ST87QyiUk0uQ4dWpSKlw3juO6Um2C/exec",
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
+        if ("" != sUserImage || !sRFO.isEmpty() || !sLocation.isEmpty() || !sAffected.isEmpty() || !sType.isEmpty() || !sAffectedRegion.isEmpty()) {
 
-                        loading.dismiss();
-                        Toast.makeText(MainActivity.this, response, Toast.LENGTH_LONG).show();
-                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                        startActivity(intent);
-                    }
-                },
-
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        loading.dismiss();
-                        Toast.makeText(MainActivity.this, "Poor or No Internet Connection", Toast.LENGTH_LONG).show();
-
-                    }
-                 }) {
-            @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<>();
+        final ProgressDialog loading = ProgressDialog.show(this, "Adding Data", "Please Wait");
 
 
-                params.put("action", "addItem");
-                params.put("sAffectedRegion", sAffectedRegion);
-                params.put("sType", sType);
-                params.put("sAffected", sAffected);
-                params.put("sLocation", sLocation);
-                params.put("sRFO", sRFO);
-                params.put("sUserImage", sUserImage);
+
+            StringRequest stringRequest = new StringRequest(Request.Method.POST,
+                    "https://script.google.com/macros/s/AKfycbwZDvjcxVbZ8uDP9XEbGy0ST87QyiUk0uQ4dWpSKlw3juO6Um2C/exec",
+
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
 
 
-                return params;
-            }
-        };
+                            loading.dismiss();
+                            Toast.makeText(MainActivity.this, response, Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                            startActivity(intent);
 
-        int socketTimeOut = 30000;
-
-        RetryPolicy retryPolicy = new DefaultRetryPolicy(socketTimeOut, 0, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
-        stringRequest.setRetryPolicy(retryPolicy);
-
-        RequestQueue queue = Volley.newRequestQueue(this);
-
-        queue.add(stringRequest);
+                        }
 
 
+                    },
+
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            loading.dismiss();
+                            Toast.makeText(MainActivity.this, "Poor or No Internet Connection", Toast.LENGTH_LONG).show();
+
+                        }
+                    }) {
+                @Override
+                protected Map<String, String> getParams() {
+                    Map<String, String> params = new HashMap<>();
+
+
+                    params.put("action", "addItem");
+                    params.put("sAffectedRegion", sAffectedRegion);
+                    params.put("sType", sType);
+                    params.put("sAffected", sAffected);
+                    params.put("sLocation", sLocation);
+                    params.put("sRFO", sRFO);
+                    params.put("sUserImage", sUserImage);
+
+
+                    return params;
+                }
+            };
+
+            int socketTimeOut = 30000;
+
+            RetryPolicy retryPolicy = new DefaultRetryPolicy(socketTimeOut, 0, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+            stringRequest.setRetryPolicy(retryPolicy);
+
+            RequestQueue queue = Volley.newRequestQueue(this);
+
+            queue.add(stringRequest);
+
+
+        }
+        else
+            Toast.makeText(MainActivity .this,"No data input",Toast.LENGTH_LONG).show();
     }
 
 
