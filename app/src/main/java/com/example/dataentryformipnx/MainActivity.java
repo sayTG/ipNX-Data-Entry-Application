@@ -114,7 +114,9 @@ public class MainActivity extends AppCompatActivity {
         modify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Clicked Modify Data", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(),form_list.class);
+                startActivity(intent);
+//                Toast.makeText(MainActivity.this, "Clicked Modify Data", Toast.LENGTH_SHORT).show();
             }
         });
 
