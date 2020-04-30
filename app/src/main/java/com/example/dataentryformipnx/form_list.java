@@ -96,6 +96,7 @@ public class form_list extends AppCompatActivity {
 
                 JSONObject object = jsonArray.getJSONObject(i);
 
+                String sID = object.getString("sID");
                 String sAffectedRegion = object.getString("sAffectedRegion");
                 String sType = object.getString("sType");
                 String sAffected = object.getString("sAffected");
@@ -104,6 +105,7 @@ public class form_list extends AppCompatActivity {
                 String sUserImage = object.getString("sUserImage");
 
                 HashMap<String, String > item = new HashMap<>();
+                item.put("sID", sID);
                 item.put("sAffectedRegion", sAffectedRegion);
                 item.put("sType", sType);
                 item.put("sAffected", sAffected);
@@ -123,8 +125,8 @@ public class form_list extends AppCompatActivity {
 
 
         adapter = new List_Adapter(this, list,  R.layout.activity_form_row,
-                new String[]{"sAffectedRegion", "sType", "sAffected", "sLocation", "sRFO"}, new int[]{R.id.textView_region,
-            R.id.textView_type, R.id.textView_pon, R.id.textView_location, R.id.textView_rfo});
+                new String[]{"sID", "sAffectedRegion", "sType", "sAffected", "sLocation", "sRFO"}, new int[]{R.id.textView_id,
+                R.id.textView_region, R.id.textView_type, R.id.textView_pon, R.id.textView_location, R.id.textView_rfo});
 
         listView.setAdapter(adapter);
 

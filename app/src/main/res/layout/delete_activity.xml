@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    tools:context=".Delete_Class"
+    android:padding="20dp">
+
+
+    <EditText
+        android:id="@+id/serialNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Enter the serial number here"
+        android:inputType="number"
+        android:textColor="#F7161515"
+        android:textColorHint="#F7161515" />
+
+    <Button
+        android:id="@+id/deleteButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="#D50000"
+        android:text="Delete"
+        android:textColor="#0F0F0F"
+        android:textStyle="normal|bold"
+        android:textSize="14dp" />
+</LinearLayout>

@@ -13,6 +13,7 @@
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity android:name=".form_row"></activity>
         <activity android:name=".form_list" />
+        <activity android:name=".Delete_Class" />
         <activity android:name=".spinner_color_layout" />
         <activity android:name=".MainActivity">
             <intent-filter>

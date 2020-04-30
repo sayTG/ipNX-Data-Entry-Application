@@ -85,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
         rFO = findViewById(R.id.rFO);
         addImage = findViewById(R.id.addImage);
 
+
 //        textView = findViewById(R.id.textView);
 
 
@@ -123,6 +124,8 @@ public class MainActivity extends AppCompatActivity {
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), Delete_Class.class);
+                startActivity(intent);
                 Toast.makeText(MainActivity.this, "Clicked Delete Data", Toast.LENGTH_SHORT).show();
             }
         });
@@ -174,7 +177,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void addItemToSheet() {
+    public void addItemToSheet() {
 
         final String sRFO = rFO.getText().toString().trim();
         final String sLocation = location.getText().toString().trim();
@@ -184,7 +187,7 @@ public class MainActivity extends AppCompatActivity {
 
         Log.e("null", "values" + sUserImage);
 
-        if (sUserImage == null ) {
+        if (sUserImage == null) {
             sUserImage = "";
 
         }
@@ -192,67 +195,65 @@ public class MainActivity extends AppCompatActivity {
 
         if ("" != sUserImage || !sRFO.isEmpty() || !sLocation.isEmpty() || !sAffected.isEmpty() || !sType.isEmpty() || !sAffectedRegion.isEmpty()) {
 
-        final ProgressDialog loading = ProgressDialog.show(this, "Adding Data", "Please Wait");
+                final ProgressDialog loading = ProgressDialog.show(this, "Adding Data", "Please Wait");
 
 
+                StringRequest stringRequest = new StringRequest(Request.Method.POST,
+                        "https://script.google.com/macros/s/AKfycbwZDvjcxVbZ8uDP9XEbGy0ST87QyiUk0uQ4dWpSKlw3juO6Um2C/exec",
 
-            StringRequest stringRequest = new StringRequest(Request.Method.POST,
-                    "https://script.google.com/macros/s/AKfycbwZDvjcxVbZ8uDP9XEbGy0ST87QyiUk0uQ4dWpSKlw3juO6Um2C/exec",
-
-                    new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-
-
-                            loading.dismiss();
-                            Toast.makeText(MainActivity.this, response, Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                            startActivity(intent);
-
-                        }
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
 
 
-                    },
+                                loading.dismiss();
+                                Toast.makeText(MainActivity.this, response, Toast.LENGTH_LONG).show();
+                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                startActivity(intent);
 
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            loading.dismiss();
-                            Toast.makeText(MainActivity.this, "Poor or No Internet Connection", Toast.LENGTH_LONG).show();
-
-                        }
-                    }) {
-                @Override
-                protected Map<String, String> getParams() {
-                    Map<String, String> params = new HashMap<>();
+                            }
 
 
-                    params.put("action", "addItem");
-                    params.put("sAffectedRegion", sAffectedRegion);
-                    params.put("sType", sType);
-                    params.put("sAffected", sAffected);
-                    params.put("sLocation", sLocation);
-                    params.put("sRFO", sRFO);
-                    params.put("sUserImage", sUserImage);
+                        },
+
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                loading.dismiss();
+                                Toast.makeText(MainActivity.this, "Poor or No Internet Connection", Toast.LENGTH_LONG).show();
+
+                            }
+                        }) {
+                    @Override
+                    protected Map<String, String> getParams() {
+                        Map<String, String> params = new HashMap<>();
 
 
-                    return params;
-                }
-            };
+                        params.put("action", "addItem");
+                        params.put("sAffectedRegion", sAffectedRegion);
+                        params.put("sType", sType);
+                        params.put("sAffected", sAffected);
+                        params.put("sLocation", sLocation);
+                        params.put("sRFO", sRFO);
+                        params.put("sUserImage", sUserImage);
 
-            int socketTimeOut = 30000;
 
-            RetryPolicy retryPolicy = new DefaultRetryPolicy(socketTimeOut, 0, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
-            stringRequest.setRetryPolicy(retryPolicy);
+                        return params;
+                    }
+                };
 
-            RequestQueue queue = Volley.newRequestQueue(this);
+                int socketTimeOut = 30000;
 
-            queue.add(stringRequest);
+                RetryPolicy retryPolicy = new DefaultRetryPolicy(socketTimeOut, 0, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+                stringRequest.setRetryPolicy(retryPolicy);
 
+                RequestQueue queue = Volley.newRequestQueue(this);
+
+                queue.add(stringRequest);
 
         }
         else
-            Toast.makeText(MainActivity .this,"No data input",Toast.LENGTH_LONG).show();
+            Toast.makeText(MainActivity.this, "No data input", Toast.LENGTH_LONG).show();
     }
 
 
