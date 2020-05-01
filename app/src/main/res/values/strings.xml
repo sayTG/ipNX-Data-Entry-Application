@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">DataEntryFormipNX</string>
+    <string name="app_name">ipNX Data Form</string>
     <!--    <String name="Affected_Region">Choose a region</String>-->
 
     <string-array name="Region_Arrays">

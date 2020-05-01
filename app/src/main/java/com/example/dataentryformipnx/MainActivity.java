@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
 
         save = findViewById(R.id.save);
         modify = findViewById(R.id.modify);
-        newSheet = findViewById(R.id.newSheet);
+//        newSheet = findViewById(R.id.newSheet);
         delete = findViewById(R.id.delete);
 
         affectedPort = findViewById(R.id.affectedPONPort);
@@ -126,17 +126,10 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), Delete_Class.class);
                 startActivity(intent);
-                Toast.makeText(MainActivity.this, "Clicked Delete Data", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(MainActivity.this, "Clicked Delete Data", Toast.LENGTH_SHORT).show();
             }
         });
 
-        newSheet.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Clicked New Sheet", Toast.LENGTH_SHORT).show();
-
-            }
-        });
 
         addImage.setOnClickListener(new View.OnClickListener() {
             @Override

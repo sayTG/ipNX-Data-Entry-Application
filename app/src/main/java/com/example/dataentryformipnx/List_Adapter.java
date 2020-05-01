@@ -45,7 +45,7 @@ public class List_Adapter extends SimpleAdapter {
 
 
         if(url.isEmpty()){
-            Picasso.with(v.getContext()).load(R.drawable.farmer).into(img);
+            Picasso.with(v.getContext()).load(R.drawable.ipnx).into(img);
             return v;
         }
 
